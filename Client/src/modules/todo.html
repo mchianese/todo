@@ -1,0 +1,39 @@
+<template>
+
+    <form class="col-lg-6 col-lg-offset-3" id="TodoForm">
+
+        <div class="form-group">
+            <label for="InputTodo">Todo</label>
+            <input type="text" class="form-control" id="InputTodo"  aria-describedby="todoHelp" placeholder="Enter Todo Item" value.bind="newTodo">
+        </div>
+
+
+        <div class="form-group">
+            <label for="InputDueDate">Due Date</label>
+    <input class="form-control" type="date"  id="InputDueDate" value.bind="datenow">
+  </div>
+</div>
+
+
+        <div>
+            <label for="InputPriority">Select Priority</label>
+            <select class="form-control" value.bind="InputPriority">
+              <!--  <option selected>Priority</option> !-->
+                <option selected value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select>
+
+        </div>
+        <p> </p>
+        <p> </p>
+        <button click.delegate="save()" type="submit" class="btn btn-primary">Submit</button>
+
+        <a href="" class="text-muted" click.trigger="listcancel()">back</a>
+       
+        <div innerhtml.bind="SaveTodoError"></div>
+
+    </form>
+
+
+</template>

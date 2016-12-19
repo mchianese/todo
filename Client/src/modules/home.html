@@ -1,0 +1,42 @@
+<template>
+
+
+<!-- <span class="glyphicon glyphicon-search" aria-hidden="true"> </span> !-->
+
+
+	
+ <!-- <div class='container'>   !-->
+    <div class="panel panel-default MarginTop">
+      <div class="panel-body">
+        <div class="col-lg-2">
+          <h1>${message}</h1>
+        </div>
+        <div class="col-lg-2 pull-right">
+          <img height="100px" src="/src/resources/img/todo.jpg" />
+        </div>
+      </div>
+    </div>
+
+
+
+
+ <div style="margin-top:10px;">
+
+    <div class="col-lg-1 input-group marginTop marginBottom"> 
+           <span show.bind="!showLogin" click.trigger="showRegister()" 		class=" glyphicon glyphicon-arrow-left leftMargin">
+	 </span>
+</div> 
+
+
+      <compose show.bind="showLogin" view="./login.html"></compose>
+      <compose show.bind="!showLogin" view="./register.html"></compose>
+      
+
+ </div>
+<!--
+ <div class="well col-md-3">
+   <form id="form">
+     <div id="errorMsg" innerhtml.bind="loginError"></div>
+     <div class="form-group">
+ !-->
+</template>

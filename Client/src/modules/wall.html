@@ -1,0 +1,42 @@
+<template>
+
+	<div class="panel panel-default">
+		<div class="panel-body">
+
+			<div class="row marginBottom marginTop vertical-align">
+				<!--	<div class="input-group col-lg-2">
+			<input value.bind="searchScreenName" class="form-control" type="text" placeholder="Screen Name" id="searchtxt">
+			<span class="input-group-addon" click.trigger="findUser()"><span class="glyphicon glyphicon-search"></span>
+		</div> !-->
+				<div class="col-lg-2 col-lg-offset-8">
+				<!--	<span show.bind="notMe" click.trigger="home()" class="glyphicon glyphicon-home marginLeft"></span>
+					<span show.bind="notMe" click.trigger="follow()" class="glyphicon glyphicon-user marginLeft"></span> !-->
+					<span show.bind="showList" click.trigger="AddTodo()" class="glyphicon glyphicon-plus marginLeft"></span>
+					<span click.trigger="logout()" class="glyphicon glyphicon-log-out marginLeft"></span>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="col-md-2">
+						<h2> <img click.trigger="home()" height="75px" src="/src/resources/img/todo.jpg" />
+						</h2>
+						<H2>${users.selectedUser.screenName}'s ToDos:</H2>
+					</div>
+					<div class="col-md-2">
+					</div>
+					<div class="col-md-2">
+					</div>
+				</div>
+			</div>
+
+
+
+			<compose show.bind="showList" view="./list.html"></compose>
+			<compose show.bind="!showList" view="./todo.html"></compose>
+
+
+		</div>
+	</div>
+
+</template>

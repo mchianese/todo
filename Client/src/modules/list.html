@@ -1,0 +1,47 @@
+<template>
+
+	<!--
+	<div class="panel panel-default" show.bind="users.selectedUser._id == user._id">
+		<div class="panel-body">
+			<p><textarea value.bind="newTodo" class="form-control" id="todo" rows="1" cols "144"> </textarea></p>
+			<p><button click.trigger="todo()" class="btn-primary" id="btnTodo">Todo</button></p>
+			<div innherhtml bind="saveStatus"></div>
+		</div>
+	</div>
+    !-->
+
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div show.bind="wallMessage.length >0" innerhtml.bind="wallMessage"></div>
+			<ul class="list-group">
+				<li class="list-group-item" repeat.for="todo of todos.todoArray  | hideCompleted:showCompleted">
+
+					<!--		<div clas="media-left" innerhtml='${todo.todoAuthor.email | gravatarUrl:40:6}'> </div>
+					<p>${todo.todoAuthor.screenName}: </p>
+						!-->
+					<div class="media-body">
+
+						<div class="col-lg-12">
+
+							<span class="col-lg-2" click.trigger='editTodo($index)'> ${todo.todo} </span>
+							<span show.bind="todo.completed" class="col-lg-2 glyphicon glyphicon-check" click.trigger='toggleComplete($index)'></span>
+							<span show.bind="!todo.completed" class="col-lg-2 glyphicon glyphicon-unchecked" click.trigger='toggleComplete($index)'></span>
+							<span class="col-lg-2">${todo.dateDue | dateFormat}</span>
+							<span class="col-lg-2">${todo.priority}</span>
+							<span class="col-lg-2 glyphicon glyphicon-remove-circle" click.trigger='deleteTodo($index)'></span>
+
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="panel-body">
+				<span show.bind="!showCompleted" class="col-lg-2 glyphicon glyphicon-check" click.trigger='toggleShowComplete()'> Show Completed</span>
+				<span show.bind="showCompleted" class="col-lg-2 glyphicon glyphicon-unchecked" click.trigger='toggleShowComplete()'> Show Completed</span>
+			</div>
+
+		</div>
+
+
+	</div>
+
+</template>
