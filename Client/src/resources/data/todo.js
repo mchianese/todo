@@ -53,10 +53,12 @@ export class Todos {
         }
     }
 
-    async completed(id) {
+    async completedfunction(id) {
         var todo = {};
         try {
             let serverResponse = await this.data.put(todo, this.data.TODO_SERVICE + '/completed/' + id);
+
+            console.log(serverResponse);
             return serverResponse;
         } catch (error) {
             console.log(error);

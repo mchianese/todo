@@ -32,10 +32,10 @@ export class Wall {
     this.SaveTodoError = '';
     this.datenow = moment(new Date()).format("YYYY-MM-DD");
     this.InputPriority = "Low";
-        this.showCompleted = false;
-        this.todoedit = false;
-        this.editid = '';
-     
+    this.showCompleted = false;
+    this.todoedit = false;
+    this.editid = '';
+
 
 
 
@@ -56,13 +56,13 @@ export class Wall {
     sessionStorage.removeItem('user');
     this.auth.logout();
   }
- // home() {
+  // home() {
   //  this.router.navigate('wall');
- //   this.activate();
+  //   this.activate();
   //  this.notMe = false;
   //  this.searchScreenName = '';
 
-async home(){
+  async home() {
     this.notMe = false;
     await this.todos.getUsersTodos(this.user._id);
     this.users.setUser(this.user);
@@ -71,193 +71,189 @@ async home(){
 
   }
 
- async AddTodo(){
+  async AddTodo() {
 
-   this.showList = false;
-   this.datenow = moment(new Date()).format("YYYY-MM-DD");
+    this.showList = false;
+    this.datenow = moment(new Date()).format("YYYY-MM-DD");
 
- }
+  }
 
- async listcancel(){
-         this.InputPriority = "Low";
-       this.datenow = moment(new Date()).format("YYYY-MM-DD");
-       this.newTodo= '';
-       this.todoedit = false;
-       this.showList = true;
+  async listcancel() {
+    this.InputPriority = "Low";
+    this.datenow = moment(new Date()).format("YYYY-MM-DD");
+    this.newTodo = '';
+    this.todoedit = false;
+    this.showList = true;
 
-   this.showList = true;
- }
+    this.showList = true;
+  }
 
-    // this.searchScreenName = 'Screen Name';
+  // this.searchScreenName = 'Screen Name';
   //}
   //  activate() {
   //   this.user = JSON.parse(sessionStorage.getItem('user'));
   //}
-async save() {
-  var todo = {};
-  let serverResponse;
+  async save() {
+    var todo = {};
+    let serverResponse;
 
-if(this.todoedit) {
-    todo = {
-    _id: this.editid,
-    todo: this.newTodo,
-    todoAuthor: this.user._id,
-    priority: this.InputPriority,
-    dateDue: this.datenow
-  }
+    if (this.todoedit) {
+      todo = {
+        _id: this.editid,
+        todo: this.newTodo,
+        todoAuthor: this.user._id,
+        priority: this.InputPriority,
+        dateDue: this.datenow
+      }
 
-        serverResponse = await this.todos.saveeditTodo(todo);
+      serverResponse = await this.todos.saveeditTodo(todo);
 
-} else {
-    todo = {
-    todo: this.newTodo,
-    todoAuthor: this.user._id,
-    priority: this.InputPriority,
-    dateDue: this.datenow
-  }
+    } else {
+      todo = {
+        todo: this.newTodo,
+        todoAuthor: this.user._id,
+        priority: this.InputPriority,
+        dateDue: this.datenow
+      }
 
 
       serverResponse = await this.todos.saveTodo(todo);
-}
-      if (serverResponse && !serverResponse.error) {
-        this.newTodo = "";
-        this.saveStatus = "";
-     //   this.todos.todoArray[0] = null;
-         } else {
-        this.saveStatus = "Error saving todo";
-      }
+    }
+    if (serverResponse && !serverResponse.error) {
+      this.newTodo = "";
+      this.saveStatus = "";
+      //   this.todos.todoArray[0] = null;
+    } else {
+      this.saveStatus = "Error saving todo";
+    }
 
 
-      this.InputPriority = "Low";
-       this.datenow = moment(new Date()).format("YYYY-MM-DD");
-       this.newtodo= '';
-       this.todoedit = false;
+    this.InputPriority = "Low";
+    this.datenow = moment(new Date()).format("YYYY-MM-DD");
+    this.newtodo = '';
+    this.todoedit = false;
 
-      serverResponse = await this.todos.getUsersTodos(this.user._id);
-      if (serverResponse.error) {
-        this.wallMessage = "Error retrieving todos";
-      }
-      this.showList = true;
+    serverResponse = await this.todos.getUsersTodos(this.user._id);
+    if (serverResponse.error) {
+      this.wallMessage = "Error retrieving todos";
+    }
+    this.showList = true;
 
-}
+  }
 
-/*
-  async todo() {
-    if (this.newTodo) {
-      var todo = {
-        todo: this.newTodo,
-        todoAuthor: this.user._id
-      }
-      let serverResponse = await this.todos.saveTodo(todo);
-      if (serverResponse && !serverResponse.error) {
-        this.newTodo = "";
-        this.saveStatus = "";
-        this.todos.todoArray[0].todoAuthor = new Object();
-        //this.chirps.chirpArray[0].chirpAuthor.email = { email: this.user.email };
-         this.todos.todoArray[0].todoAuthor.email = this.user.email;
-         this.todos.todoArray[0].todoAuthor.screenName = this.user.screenName;
-      } else {
-        this.saveStatus = "Error saving todo";
+  /*
+    async todo() {
+      if (this.newTodo) {
+        var todo = {
+          todo: this.newTodo,
+          todoAuthor: this.user._id
+        }
+        let serverResponse = await this.todos.saveTodo(todo);
+        if (serverResponse && !serverResponse.error) {
+          this.newTodo = "";
+          this.saveStatus = "";
+          this.todos.todoArray[0].todoAuthor = new Object();
+          //this.chirps.chirpArray[0].chirpAuthor.email = { email: this.user.email };
+           this.todos.todoArray[0].todoAuthor.email = this.user.email;
+           this.todos.todoArray[0].todoAuthor.screenName = this.user.screenName;
+        } else {
+          this.saveStatus = "Error saving todo";
+        }
       }
     }
-  }
-*/
+  */
 
-//  async follow() {
+  //  async follow() {
 
-//    let serverResponse = await this.users.getPersonScreenName(this.searchScreenName);
- //   this.notMe = true;
- //   if (serverResponse && !serverResponse.error) {
+  //    let serverResponse = await this.users.getPersonScreenName(this.searchScreenName);
+  //   this.notMe = true;
+  //   if (serverResponse && !serverResponse.error) {
   //    let response = await this.users.followUser(this.user._id, serverResponse._id);
   //    if (response.error) {
-   //     this.wallMessage = "Error following user";
+  //     this.wallMessage = "Error following user";
   ///    }
-   // }
+  // }
   //}
 
-//async follow(){
- //   await this.users.followUser(this.user._id, this.users.selectedUser._id);
+  //async follow(){
+  //   await this.users.followUser(this.user._id, this.users.selectedUser._id);
   //}
 
 
 
 
   async activate() {
-    
+
     this.user = JSON.parse(sessionStorage.getItem('user'));
     this.users.setUser(this.user);
 
     let serverResponse = await this.todos.getUsersTodos(this.user._id);
     if (serverResponse.error) {
       this.wallMessage = "Error retrieving todos";
-   }
-  }
-
-  
-
-
-
-
-  async findUser() {
-    let serverResponse = await this.users.getPersonScreenName(this.searchScreenName);
-    this.notMe = true;
-    if (serverResponse && !serverResponse.error) {
-      let response = await this.chirps.getUsersChirps(serverResponse._id);
-      this.users.setUser(serverResponse);
-      if (response.error) {
-        this.wallMessage = "Error retrieving chirps";
-      }
     }
   }
 
-  async toggleComplete(index)
-{
-    this.todos.completed(this.todos.todoArray[index]._id);
-    this.todos.todoArray[index].completed = !this.todos.todoArray[index].completed;
-}
 
- toggleShowComplete() {
+  //  async findUser() {
+  //  let serverResponse = await this.users.getPersonScreenName(this.searchScreenName);
+  //    this.notMe = true;
+  //    if (serverResponse && !serverResponse.error) {
+  //    let response = await this.chirps.getUsersChirps(serverResponse._id);
+  //  this.users.setUser(serverResponse);
+  //   if (response.error) {
+  //     this.wallMessage = "Error retrieving chirps";
+  //  }
+  // }
+  // }
+
+  async toggleComplete(index) {
+    this.todos.completedfunction(this.todos.todoArray[index]._id);
+
+   this.todos.todoArray[index].completed = !this.todos.todoArray[index].completed;
+  
+  }
+
+  async toggleShowComplete() {
 
     this.showCompleted = !this.showCompleted;
 
- }
+  }
 
 
-  async deleteTodo(index)
-{
+  async deleteTodo(index) {
     this.todos.deletetodofunction(this.todos.todoArray[index]._id);
 
     delete this.todos.todoArray.splice(index, 1);
-}
+  }
 
- // like(index) {
-   // this.chirps.like(this.chirps.chirpArray[index]._id);
+  // like(index) {
+  // this.chirps.like(this.chirps.chirpArray[index]._id);
   //  this.chirps.chirpArray[index].likes++;
   //}
 
-//  async reChirp(chirp) {
- //   var newChirp = {
+  //  async reChirp(chirp) {
+  //   var newChirp = {
   //    chirp: chirp.chirp,
-      //user: chirp.user,
-   //   user: this.user._id,
+  //user: chirp.user,
+  //   user: this.user._id,
 
-    //  reChirp: true,
-    // chirpAuthor: chirp.user
-    //  chirpAuthor: this.user._id
+  //  reChirp: true,
+  // chirpAuthor: chirp.user
+  //  chirpAuthor: this.user._id
   //  };
 
 
- //   let serverResponse = await this.chirps.saveChirp(newChirp);
+  //   let serverResponse = await this.chirps.saveChirp(newChirp);
   //  if (serverResponse && !serverResponse.error) {
   //    this.saveStatus = "";
-   //   this.chirps.chirpArray[0].chirpAuthor = new Object();
+  //   this.chirps.chirpArray[0].chirpAuthor = new Object();
   //    this.chirps.chirpArray[0].chirpAuthor = { email: this.user.email };
-     //      this.chirps.chirpArray[0].chirpAuthor.email = chirp.user.email;
-    //     this.chirps.chirpArray[0].chirpAuthor.screenName = chirp.user.screenName;
- //   } else {
-   //   this.saveStatus = "Error saving chirp";
+  //      this.chirps.chirpArray[0].chirpAuthor.email = chirp.user.email;
+  //     this.chirps.chirpArray[0].chirpAuthor.screenName = chirp.user.screenName;
+  //   } else {
+  //   this.saveStatus = "Error saving chirp";
   //  }
- // }
+  // }
 
 
 

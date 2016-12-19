@@ -14,7 +14,8 @@ export class HideCompletedValueConverter {
 
             })
 
-            return displayArray;
+
+            return displayArray.reverse();
 
 
         } else {

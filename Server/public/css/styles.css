@@ -1,0 +1,17 @@
+.marginLeft {
+    margin-left: 20px;
+}
+
+span.glyphicon {
+    font-size:1em;
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+
+}
+
+.smallFont {
+    font-size: small;
+}

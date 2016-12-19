@@ -79,7 +79,8 @@ export class DataServices {
                 if (!response.isSuccess) {
                     return response;
                 } else {
-                    return JSON.parse(response.response);
+                    return response;
+             //       return JSON.parse(response.response);
                 }
             }).catch(e => {
                 console.log(e);
